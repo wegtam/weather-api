@@ -37,5 +37,5 @@ class Weatherdata(models.Model):
 
     def save(self, *args, **kwargs):
         self.timestamp = now()
-        super(Weatherdata,self).save(*args, **kwargs)
+        super(Weatherdata, self).save(*args, **kwargs)
 
