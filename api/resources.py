@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from tastypie.authorization import Authorization
+from tastypie.authentication import ApiKeyAuthentication
 from tastypie import fields
 from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 from .models import Weatherstation, Weatherdata
@@ -35,6 +36,7 @@ class EntryResource(ModelResource):
         """queryset = User.objects.all()"""
         resource_name = 'weatherdata'
         authorization = Authorization()
+        authentication = ApiKeyAuthentication()
         filtering = {
             'user': ALL_WITH_RELATIONS,
             'weatherstation': ALL_WITH_RELATIONS,
