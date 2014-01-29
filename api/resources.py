@@ -1,12 +1,10 @@
 from django.contrib.auth.models import User
-from tastypie.authorization import Authorization
-from tastypie.authentication import ApiKeyAuthentication
 from tastypie import fields
 from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 from .models import Weatherstation, Weatherdata
 
-
 class UserResource(ModelResource):
+
     class Meta:
         queryset = User.objects.all()
         resource_name = 'user'
@@ -16,28 +14,25 @@ class UserResource(ModelResource):
         }
 
 
-class WsResource(ModelResource):
+class WSResource(ModelResource):
+    user = fields.ForeignKey(UserResource, 'user')
+
     class Meta:
         queryset = Weatherstation.objects.all()
-        resource_name = 'weatherstation'
-        excludes = ['user']
+        resource_name = 'ws'
         filtering = {
-            'name': ALL,
+
+            'user': ALL_WITH_RELATIONS,
         }
-        object_class = 'name'
 
 
-class EntryResource(ModelResource):
+class WDResource(ModelResource):
     user = fields.ForeignKey(UserResource, 'user')
-    weatherstation = fields.ForeignKey(WsResource, 'weatherstation')
+    ws = fields.ForeignKey(WSResource, 'weatherstation', full=True)
 
     class Meta:
         queryset = Weatherdata.objects.all()
-        """queryset = User.objects.all()"""
-        resource_name = 'weatherdata'
-        authorization = Authorization()
-        authentication = ApiKeyAuthentication()
+        resource_name = 'wd'
         filtering = {
             'user': ALL_WITH_RELATIONS,
-            'weatherstation': ALL_WITH_RELATIONS,
         }
