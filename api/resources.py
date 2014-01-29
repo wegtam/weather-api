@@ -3,6 +3,7 @@ from tastypie import fields
 from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 from .models import Weatherstation, Weatherdata
 
+
 class UserResource(ModelResource):
 
     class Meta:
@@ -22,7 +23,7 @@ class WSResource(ModelResource):
         resource_name = 'ws'
         filtering = {
             'user': ALL_WITH_RELATIONS,
-            'id': ALL,
+            'id': 'exact',
         }
 
 
