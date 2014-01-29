@@ -21,18 +21,19 @@ class WSResource(ModelResource):
         queryset = Weatherstation.objects.all()
         resource_name = 'ws'
         filtering = {
-
             'user': ALL_WITH_RELATIONS,
+            'id': ALL,
         }
 
 
 class WDResource(ModelResource):
     user = fields.ForeignKey(UserResource, 'user')
-    ws = fields.ForeignKey(WSResource, 'weatherstation', full=True)
+    weatherstation = fields.ForeignKey(WSResource, 'weatherstation')
 
     class Meta:
         queryset = Weatherdata.objects.all()
         resource_name = 'wd'
         filtering = {
             'user': ALL_WITH_RELATIONS,
+            'weatherstation': ALL_WITH_RELATIONS,
         }
