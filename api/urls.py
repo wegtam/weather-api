@@ -1,11 +1,9 @@
 from django.conf.urls import *
 from tastypie.api import Api
-from .resources import UserResource, WSResource, WDResource
+from .resources import WDResource
 
 
 v1_api = Api(api_name='v1')
-v1_api.register(UserResource())
-v1_api.register(WSResource())
 v1_api.register(WDResource())
 
 urlpatterns = patterns('',
