@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Alle Wetterdaten{% endblock %}
+
+{% block content %}
+
+<h2>{{ object_list.first }}</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Air Pressure</th>
+            <th>Lightness</th>
+            <th>Altitude</th>
+            <th>Wetterstation</th>
+            <th>Datum</th>
+        </tr>
+    </thead>
+    <tbody>
+     {% for weatherdata in object_list %}
+        <tr>
+            <td>{{ weatherdata.temperature }}</td>
+            <td>{{ weatherdata.humidity }}</td>
+            <td>{{ weatherdata.air_pressure}}</td>
+            <td>{{ weatherdata.lightness }}</td>
+            <td>{{ weatherdata.altitude }}</td>
+            <td>{{ weatherdata.timestamp }}</td>
+            <td>{{ weatherdata }}</td>
+        </tr>
+     {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

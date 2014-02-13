@@ -1,11 +1,6 @@
-from django.conf.urls import *
-from tastypie.api import Api
-from .resources import WDResource
-
-
-v1_api = Api(api_name='v1')
+"""v1_api = Api(api_name='v1')
 v1_api.register(WDResource())
 
 urlpatterns = patterns('',
     url(r'^api/', include(v1_api.urls)),
-)
+)"""

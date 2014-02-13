@@ -1,6 +1,0 @@
-<a class="lead" href="{{ weatherdata.url }}">{{ weatherdata.title }}</a>
-{% if weatherdata.description %}
-    <br>{{ weatherdata.description|linebreaksbr }}
-{% endif %}
-<br>by <a href="{% url "api_weatherdata_user" weatherdata.user.username %}">{{ weatherdata.user.username }}</a>
-{{ weatherdata.timestamp|timesince }} ago

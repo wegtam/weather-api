@@ -1,14 +1,4 @@
-from django.contrib.auth.models import User
-from tastypie import fields
-from tastypie.authentication import ApiKeyAuthentication
-from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
-from tastypie.authorization import Authorization, DjangoAuthorization
-from tastypie.exceptions import Unauthorized
-
-from .models import Weatherstation, Weatherdata
-
-
-class UserObjectsOnlyAuthorization(Authorization):
+"""class UserObjectsOnlyAuthorization(Authorization):
     def read_list(self, object_list, bundle):
         # This assumes a ``QuerySet`` from ``ModelResource``.
         return object_list.filter(user=bundle.request.user)
@@ -84,4 +74,4 @@ class WDResource(ModelResource):
         filtering = {
             'user': ALL_WITH_RELATIONS,
             'weatherstation': ['exact'],
-        }
+        }"""
