@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Alle Wetterdaten{% endblock %}
+
+{% block content %}
+
+<h1>{{ user.username }}</h1>
+
+{% for ws in weatherstation %}
+<h2>{{ ws.name }}</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Air Pressure</th>
+            <th>Lightness</th>
+            <th>Altitude</th>
+            <th>Datum</th>
+            <th>Wetterstation</th>
+        </tr>
+    </thead>
+    <tbody>
+     {% for wd in weatherdata %}
+        {% if ws.id == wd.weatherstation_id %}
+        <tr>
+            <td>{{ wd.temperature }}</td>
+            <td>{{ wd.humidity }}</td>
+            <td>{{ wd.air_pressure}}</td>
+            <td>{{ wd.lightness }}</td>
+            <td>{{ wd.altitude }}</td>
+            <td>{{ wd.timestamp }}</td>
+            <td>{{ wd }}</td>
+        </tr>
+        {% endif %}
+     {% endfor %}
+    </tbody>
+</table>
+{% endfor %}
+{% endblock %}
