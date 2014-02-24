@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Alle Wetterdaten{% endblock %}
+
+{% block content %}
+
+<h1>{{ user.username }}</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Wetterdaten</th>
+        </tr>
+    </thead>
+    <tbody>
+     {% for ws in weatherstation %}
+        <tr>
+            <td>{{ ws.id }}</td>
+            <td>{{ ws.name }}</td>
+            <td><a href="/ws/{{ ws.id }}">Zu den Wetterdaten</a></td>
+        </tr>
+     {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

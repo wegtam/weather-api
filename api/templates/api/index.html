@@ -17,15 +17,15 @@
         </tr>
     </thead>
     <tbody>
-     {% for weatherdata in object_list %}
+     {% for wd in weatherdata %}
         <tr>
-            <td>{{ weatherdata.temperature }}</td>
-            <td>{{ weatherdata.humidity }}</td>
-            <td>{{ weatherdata.air_pressure}}</td>
-            <td>{{ weatherdata.lightness }}</td>
-            <td>{{ weatherdata.altitude }}</td>
-            <td>{{ weatherdata.timestamp }}</td>
-            <td><a href="/ws/{{ weatherdata.weatherstation_id }}">{{ weatherdata }}</a></td>
+            <td>{{ wd.temperature }}</td>
+            <td>{{ wd.humidity }}</td>
+            <td>{{ wd.air_pressure}}</td>
+            <td>{{ wd.lightness }}</td>
+            <td>{{ wd.altitude }}</td>
+            <td>{{ wd.timestamp }}</td>
+            <td><a href="/ws/{{ wd.weatherstation_id }}">{{ wd }}</a></td>
         </tr>
      {% endfor %}
     </tbody>

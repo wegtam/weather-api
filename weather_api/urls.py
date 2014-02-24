@@ -13,5 +13,6 @@ urlpatterns = patterns('',
                        #url(r'^login/', 'api.views.login'),
                        url(r'^$', 'api.views.index'),
                        url(r'^ws/(?P<ws_id>[-\w]+)/$', 'api.views.detail'),
+                       url(r'^user/(?P<user_id>[-\w]+)/$', 'api.views.user_ws')
                        #url(r'^ws/', 'api.views.detail')
 )
