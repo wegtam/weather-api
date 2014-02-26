@@ -26,7 +26,8 @@ def user_ws(request, user_id):
         weather_dict = {}
         if Weatherstation.objects.filter(user_id=user_id):
             for ws in weatherstation:
-                wd = Weatherdata.objects.select_related('weatherstation__weatherdata').filter(weatherstation_id=ws.id).all()
+                wd = Weatherdata.objects.select_related('weatherstation__weatherdata').filter(weatherstation_id=ws.id).\
+                    all().order_by('-timestamp')
                 weather_dict[ws] = wd
         else:
             return HttpResponse('Keine Wetterstationen verfügbar')
