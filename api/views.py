@@ -32,3 +32,19 @@ def user_ws(request, user_id):
     return render_to_response('api/user_ws.html', context)
 
 
+def test_wd(request, user_id):
+    try:
+        user = User.objects.get(id=user_id)
+        ws = Weatherstation.objects.select_related('user__weatherdata').filter(user_id=user_id).all()
+        wd = Weatherdata.objects.select_related('user__weatherdata').filter(user_id=user_id).all()
+        testdict = {}
+        for test in ws:
+            wddaten = Weatherdata.objects.select_related('weatherstation__weatherdata').filter(weatherstation_id=test.id).all()
+            testdict[test] = wddaten
+
+        #return HttpResponse(testdict)
+    except User.DoesNotExist:
+        raise Http404
+    context = {'testdict': testdict}
+    return render_to_response('api/test.html', context)
+
