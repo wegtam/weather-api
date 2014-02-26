@@ -3,25 +3,32 @@
 {% block title %}{{ block.super }} - Alle Wetterdaten{% endblock %}
 
 {% block content %}
-
-<h1>{{ user.username }}</h1>
-
+<h1>{{ user }}</h1>
+{% for ws, wd in weather_dict.items %}
+<h2>{{ ws }}</h2>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Wetterdaten</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Air Pressure</th>
+            <th>Lightness</th>
+            <th>Altitude</th>
+            <th>Datum</th>
         </tr>
     </thead>
     <tbody>
-     {% for ws in weatherstation %}
+        {% for current in wd|slice:"2" %}
         <tr>
-            <td>{{ ws.id }}</td>
-            <td>{{ ws.name }}</td>
-            <td><a href="/ws/{{ ws.id }}">Zu den Wetterdaten</a></td>
+            <td>{{ current.temperature}}</td>
+            <td>{{ current.humidity }}</td>
+            <td>{{ current.air_pressure }}</td>
+            <td>{{ current.lightness }}</td>
+            <td>{{ current.altitude}}</td>
+            <td>{{ current.timestamp }}</td>
         </tr>
-     {% endfor %}
+        {% endfor %}
     </tbody>
 </table>
+{% endfor %}
 {% endblock %}
