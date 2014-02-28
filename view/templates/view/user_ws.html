@@ -5,7 +5,7 @@
 {% block content %}
 <h1>{{ user }}</h1>
 {% for ws, wd in weather_dict.items %}
-<h4><a href="/ws/{{ ws.id }}"> {{ ws }}</a></h4>
+<h4><a href="{{ ws.get_absolute_url }}"> {{ ws }}</a></h4>
 <table class="table table-striped">
     <thead>
         <tr>

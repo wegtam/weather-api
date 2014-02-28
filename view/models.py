@@ -16,6 +16,10 @@ class Weatherstation(models.Model):
     def __str__(self):
         return self.name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('view-detail', [str(self.id)])
+
 
 class Weatherdata(models.Model):
     temperature = models.DecimalField(u'Temperature', max_digits=5, decimal_places=2)
