@@ -31,4 +31,6 @@
     </tbody>
 </table>
 {% endfor %}
+    {% url 'view_index' as index_url  %}
+    <h6><a href="{{ index_url }}">Zurück zur Übersicht</a></h6>
 {% endblock %}
