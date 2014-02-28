@@ -157,7 +157,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // ALERT DATA-API
   // ==============
 
-  $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
+  $(document).on('click.bs.alert.data-view', dismiss, Alert.prototype.close)
 
 }(window.jQuery);
 
@@ -262,7 +262,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // BUTTON DATA-API
   // ===============
 
-  $(document).on('click.bs.button.data-api', '[data-toggle^=button]', function (e) {
+  $(document).on('click.bs.button.data-view', '[data-toggle^=button]', function (e) {
     var $btn = $(e.target)
     if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
     $btn.button('toggle')
@@ -464,7 +464,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // CAROUSEL DATA-API
   // =================
 
-  $(document).on('click.bs.carousel.data-api', '[data-slide], [data-slide-to]', function (e) {
+  $(document).on('click.bs.carousel.data-view', '[data-slide], [data-slide-to]', function (e) {
     var $this   = $(this), href
     var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
     var options = $.extend({}, $target.data(), $this.data())
@@ -648,7 +648,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // COLLAPSE DATA-API
   // =================
 
-  $(document).on('click.bs.collapse.data-api', '[data-toggle=collapse]', function (e) {
+  $(document).on('click.bs.collapse.data-view', '[data-toggle=collapse]', function (e) {
     var $this   = $(this), href
     var target  = $this.attr('data-target')
         || e.preventDefault()
@@ -817,10 +817,10 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // ===================================
 
   $(document)
-    .on('click.bs.dropdown.data-api', clearMenus)
-    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
-    .on('click.bs.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
-    .on('keydown.bs.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
+    .on('click.bs.dropdown.data-view', clearMenus)
+    .on('click.bs.dropdown.data-view', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-view'  , toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-view', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
 
 }(window.jQuery);
 
@@ -1050,7 +1050,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // MODAL DATA-API
   // ==============
 
-  $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
+  $(document).on('click.bs.modal.data-view', '[data-toggle="modal"]', function (e) {
     var $this   = $(this)
     var href    = $this.attr('href')
     var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
@@ -1607,7 +1607,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
 
     this.$element       = $(element).is('body') ? $(window) : $(element)
     this.$body          = $('body')
-    this.$scrollElement = this.$element.on('scroll.bs.scroll-spy.data-api', process)
+    this.$scrollElement = this.$element.on('scroll.bs.scroll-spy.data-view', process)
     this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
     this.selector       = (this.options.target
       || ((href = $(element).attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
@@ -1864,7 +1864,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // TAB DATA-API
   // ============
 
-  $(document).on('click.bs.tab.data-api', '[data-toggle="tab"], [data-toggle="pill"]', function (e) {
+  $(document).on('click.bs.tab.data-view', '[data-toggle="tab"], [data-toggle="pill"]', function (e) {
     e.preventDefault()
     $(this).tab('show')
   })
@@ -1899,8 +1899,8 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   var Affix = function (element, options) {
     this.options = $.extend({}, Affix.DEFAULTS, options)
     this.$window = $(window)
-      .on('scroll.bs.affix.data-api', $.proxy(this.checkPosition, this))
-      .on('click.bs.affix.data-api',  $.proxy(this.checkPositionWithEventLoop, this))
+      .on('scroll.bs.affix.data-view', $.proxy(this.checkPosition, this))
+      .on('click.bs.affix.data-view',  $.proxy(this.checkPositionWithEventLoop, this))
 
     this.$element = $(element)
     this.affixed  =

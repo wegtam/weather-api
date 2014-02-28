@@ -13,6 +13,7 @@
             <th>Lightness</th>
             <th>Altitude</th>
             <th>Datum</th>
+            <th>User</th></th>
             <th>Wetterstation</th>
         </tr>
     </thead>
@@ -25,7 +26,8 @@
             <td>{{ wd.lightness }}</td>
             <td>{{ wd.altitude }}</td>
             <td>{{ wd.timestamp }}</td>
-            <td><a href="/ws/{{ wd.weatherstation_id }}">{{ wd }}</a></td>
+            <td><a href="{{ wd.get_absolute_url2 }}">{{ wd.user }}</a></td>
+            <td><a href="{{ wd.get_absolute_url }}">{{ wd }}</a></td>
         </tr>
      {% endfor %}
     </tbody>

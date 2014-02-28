@@ -39,3 +39,11 @@ class Weatherdata(models.Model):
         self.timestamp = now()
         super(Weatherdata, self).save(*args, **kwargs)
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('view-detail', [str(self.weatherstation_id)])
+
+    @models.permalink
+    def get_absolute_url2(self):
+        return ('view-user_ws', [str(self.user_id)])
+
