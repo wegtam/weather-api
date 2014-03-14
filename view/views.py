@@ -1,3 +1,5 @@
+import logging
+
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
@@ -40,14 +42,16 @@ def user_ws(request, user_id):
 
 @method_decorator(csrf_exempt)
 def save_wd(request):
-    if request.method == 'GET':
-        humidity = request.GET.get("humidity")
-        temperature = request.GET.get("temperature")
-        altitude = request.GET.get("altitude")
-        air_pressure = request.GET.get("air_pressure")
-        lightness = request.GET.get("lightness")
-        weatherstation_id = request.GET.get("weatherstation_id")
-        user_id = request.GET.get("user_id")
+    log = logging.getLogger()
+    log.debug(request)
+    if request.method == 'POST':
+        humidity = request.POST.get("humidity")
+        temperature = request.POST.get("temperature")
+        altitude = request.POST.get("altitude")
+        air_pressure = request.POST.get("air_pressure")
+        lightness = request.POST.get("lightness")
+        weatherstation_id = request.POST.get("weatherstation_id")
+        user_id = request.POST.get("user_id")
         weatherdata = Weatherdata(humidity=humidity, temperature=temperature, altitude=altitude, air_pressure=air_pressure, lightness=lightness, weatherstation_id=weatherstation_id, user_id=user_id)
         weatherdata.save()
 
