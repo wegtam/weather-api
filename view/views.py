@@ -37,11 +37,10 @@ def user_ws(request, user_id):
     return render_to_response('view/user_ws.html', context)
 
 
-def safe_wd(request, humidity, temperature, altitude, air_pressure, lightness, weatherstation_id, user_id):
+def save_wd(request, humidity, temperature, altitude, air_pressure, lightness, weatherstation_id, user_id):
+    if request.method == 'GET':
+        weatherdata = Weatherdata(humidity=humidity, temperature=temperature, altitude=altitude, air_pressure=air_pressure, lightness=lightness, weatherstation_id=weatherstation_id, user_id=user_id)
+        weatherdata.save()
 
-    weatherdata = Weatherdata(humidity=humidity, temperature=temperature, altitude=altitude, air_pressure=air_pressure,
-                              lightness=lightness, weatherstation_id=weatherstation_id, user_id=user_id)
-
-    weatherdata.save()
-    return HttpResponse(weatherdata)
+        return HttpResponse(weatherdata)
 
