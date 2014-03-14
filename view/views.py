@@ -1,6 +1,8 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
 from view.models import Weatherdata, Weatherstation
 
@@ -36,9 +38,16 @@ def user_ws(request, user_id):
     context = {'weather_dict': weather_dict, 'user': user}
     return render_to_response('view/user_ws.html', context)
 
-
-def save_wd(request, humidity, temperature, altitude, air_pressure, lightness, weatherstation_id, user_id):
+@method_decorator(csrf_exempt)
+def save_wd(request):
     if request.method == 'GET':
+        humidity = request.GET.get("humidity")
+        temperature = request.GET.get("temperature")
+        altitude = request.GET.get("altitude")
+        air_pressure = request.GET.get("air_pressure")
+        lightness = request.GET.get("lightness")
+        weatherstation_id = request.GET.get("weatherstation_id")
+        user_id = request.GET.get("user_id")
         weatherdata = Weatherdata(humidity=humidity, temperature=temperature, altitude=altitude, air_pressure=air_pressure, lightness=lightness, weatherstation_id=weatherstation_id, user_id=user_id)
         weatherdata.save()
 
