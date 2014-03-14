@@ -1,5 +1,3 @@
-import logging
-
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
@@ -42,8 +40,6 @@ def user_ws(request, user_id):
 
 @method_decorator(csrf_exempt)
 def save_wd(request):
-    log = logging.getLogger()
-    log.debug(request)
     if request.method == 'POST':
         humidity = request.POST.get("humidity")
         temperature = request.POST.get("temperature")
