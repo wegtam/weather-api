@@ -8,7 +8,8 @@ from view.models import Weatherdata, Weatherstation
 
 
 def index(request):
-    wd = Weatherdata.objects.select_related('user__weatherdata').all().order_by('-timestamp')
+    wd = Weatherdata.objects.select_related('weatherstation', 'weatherstation__city', 'city__country').all().\
+        order_by('-timestamp')
     return render_to_response('view/index.html', {'weatherdata': wd})
 
 
@@ -37,6 +38,7 @@ def user_ws(request, user_id):
         raise Http404
     context = {'weather_dict': weather_dict, 'user': user}
     return render_to_response('view/user_ws.html', context)
+
 
 @method_decorator(csrf_exempt)
 def save_wd(request):

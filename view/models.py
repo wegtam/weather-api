@@ -5,9 +5,34 @@ from django.utils.timezone import now
 # Create your models here.
 
 
+class Countries(models.Model):
+    country = models.CharField(u'Land', max_length=100)
+    isocode = models.CharField(u'ISOCODE', max_length=2)
+
+    class Meta:
+        verbose_name = u'Country'
+        verbose_name_plural = u'Countries'
+
+    def __str__(self):
+        return self.country
+
+
+class Cities(models.Model):
+    city = models.CharField(u'Stadt', max_length=100)
+    country = models.ForeignKey(Countries, verbose_name=u'Country')
+
+    class Meta:
+        verbose_name = u'City'
+        verbose_name_plural = u'Cities'
+
+    def __str__(self):
+        return self.city
+
+
 class Weatherstation(models.Model):
     name = models.CharField(u'Name', max_length=100)
     user = models.ForeignKey(User, verbose_name=u'User')
+    city = models.ForeignKey(Cities, verbose_name=u'Stadt')
 
     class Meta:
         verbose_name = u'Weatherstation'

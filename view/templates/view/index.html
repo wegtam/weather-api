@@ -15,6 +15,8 @@
             <th>Datum</th>
             <th>User</th>
             <th>Wetterstation</th>
+            <th>Stadt</th>
+            <th>Land</th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +30,8 @@
             <td>{{ wd.timestamp }}</td>
             <td><a href="{{ wd.get_absolute_url2 }}">{{ wd.user }}</a></td>
             <td><a href="{{ wd.get_absolute_url }}">{{ wd }}</a></td>
+            <td>{{  wd.weatherstation.city.city}}</td>
+            <td>{{ wd.weatherstation.city.country.country }}</td>
         </tr>
      {% endfor %}
     </tbody>
