@@ -8,15 +8,14 @@ from view.models import Weatherdata, Weatherstation, Cities
 
 
 def index(request):
-    wd = Weatherdata.objects.select_related('weatherstation', 'weatherstation__city', 'city__country').all().\
-        order_by('-timestamp')
+    wd = Weatherdata.objects.select_related('weatherstation', 'weatherstation__city', 'city__country').all()
     return render_to_response('view/index.html', {'weatherdata': wd})
 
 
 def detail(request, ws_id):
     try:
         ws = Weatherstation.objects.get(id=ws_id)
-        wd = Weatherdata.objects.filter(weatherstation_id=ws.id).all().order_by('-timestamp')
+        wd = Weatherdata.objects.filter(weatherstation_id=ws.id).all()
     except Weatherstation.DoesNotExist:
         raise Http404
     return render_to_response('view/detail.html', {'weatherdata': wd})
@@ -30,7 +29,7 @@ def user_ws(request, user_id):
         if Weatherstation.objects.filter(user_id=user_id):
             for ws in weatherstation:
                 wd = Weatherdata.objects.select_related('weatherstation__weatherdata').filter(weatherstation_id=ws.id).\
-                    all().order_by('-timestamp')
+                    all()
                 weather_dict[ws] = wd
         else:
             return HttpResponse('Keine Wetterstationen verfügbar')
@@ -43,7 +42,8 @@ def user_ws(request, user_id):
 def city_wd(request, city_id):
     try:
         city = Cities.objects.get(id=city_id)
-        wd = Weatherdata.objects.select_related('weatherstation', 'weatherstation__city').filter(weatherstation__city=city_id).all()
+        wd = Weatherdata.objects.select_related('weatherstation', 'weatherstation__city').\
+            filter(weatherstation__city=city_id).all()
     except Weatherstation.DoesNotExist:
         raise Http404
     context = {'weatherdata': wd, 'city': city}

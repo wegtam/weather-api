@@ -62,6 +62,7 @@ class Weatherdata(models.Model):
     class Meta:
         verbose_name = u'Weather Data'
         verbose_name_plural = u'Weather Data`s'
+        ordering = ['-timestamp']
 
     def __str__(self):
         name = self.weatherstation
