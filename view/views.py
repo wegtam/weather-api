@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
-from view.models import Weatherdata, Weatherstation
+from view.models import Weatherdata, Weatherstation, Cities
 
 
 def index(request):
@@ -38,6 +38,16 @@ def user_ws(request, user_id):
         raise Http404
     context = {'weather_dict': weather_dict, 'user': user}
     return render_to_response('view/user_ws.html', context)
+
+
+def city_wd(request, city_id):
+    try:
+        city = Cities.objects.get(id=city_id)
+        wd = Weatherdata.objects.select_related('weatherstation', 'weatherstation__city').filter(weatherstation__city=city_id).all()
+    except Weatherstation.DoesNotExist:
+        raise Http404
+    context = {'weatherdata': wd, 'city': city}
+    return render_to_response('view/city_wd.html', context)
 
 
 @method_decorator(csrf_exempt)

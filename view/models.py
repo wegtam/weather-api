@@ -42,8 +42,12 @@ class Weatherstation(models.Model):
         return self.name
 
     @models.permalink
-    def get_absolute_url(self):
-        return ('view-detail', [str(self.id)])
+    def get_absolute_url2(self):
+        return ('view-user_ws', [str(self.user_id)])
+
+    @models.permalink
+    def get_absolute_url3(self):
+        return ('view-city_wd', [str(self.city_id)])
 
 
 class Weatherdata(models.Model):
@@ -54,7 +58,6 @@ class Weatherdata(models.Model):
     altitude = models.DecimalField(u'Altitude', max_digits=7, decimal_places=3)
     timestamp = models.DateTimeField(u'Timestamp', editable=False)
     weatherstation = models.ForeignKey(Weatherstation)
-    user = models.ForeignKey(User, verbose_name=u'User')
 
     class Meta:
         verbose_name = u'Weather Data'
@@ -71,8 +74,4 @@ class Weatherdata(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('view-detail', [str(self.weatherstation_id)])
-
-    @models.permalink
-    def get_absolute_url2(self):
-        return ('view-user_ws', [str(self.user_id)])
 

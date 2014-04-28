@@ -3,7 +3,9 @@
 {% block title %}{{ block.super }} - Alle Wetterdaten{% endblock %}
 
 {% block content %}
-<h2>Alle Wetterdaten</h2>
+
+<h2>{{ city }}</h2>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -13,10 +15,7 @@
             <th>Lightness</th>
             <th>Altitude</th>
             <th>Datum</th>
-            <th>User</th>
             <th>Wetterstation</th>
-            <th>Stadt</th>
-            <th>Land</th>
         </tr>
     </thead>
     <tbody>
@@ -28,12 +27,11 @@
             <td>{{ wd.lightness }}</td>
             <td>{{ wd.altitude }}</td>
             <td>{{ wd.timestamp }}</td>
-            <td><a href="{{ wd.weatherstation.get_absolute_url2 }}">{{ wd.weatherstation.user }}</a></td>
-            <td><a href="{{ wd.get_absolute_url }}">{{ wd }}</a></td>
-            <td><a href="{{ wd.weatherstation.get_absolute_url3 }}">{{  wd.weatherstation.city.city}}</a></td>
-            <td>{{ wd.weatherstation.city.country.country }}</td>
+            <td>{{ wd.weatherstation.name }}</td>
         </tr>
      {% endfor %}
     </tbody>
 </table>
+    {% url 'view_index' as index_url  %}
+    <h6><a href="{{ index_url }}">Zurück zur Übersicht</a></h6>
 {% endblock %}
