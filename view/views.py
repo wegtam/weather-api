@@ -8,7 +8,7 @@ from view.models import Weatherdata, Weatherstation, Cities
 
 
 def index(request):
-    wd = Weatherdata.objects.select_related('weatherstation', 'weatherstation__city', 'city__country').all()
+    wd = Weatherdata.objects.select_related('weatherstation', 'weatherstation__city', 'city__country').all()[:10]
     return render_to_response('view/index.html', {'weatherdata': wd})
 
 

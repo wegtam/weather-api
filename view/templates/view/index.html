@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base1.html" %}
 
 {% block title %}{{ block.super }} - Alle Wetterdaten{% endblock %}
 
@@ -7,16 +7,12 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Temperature</th>
-            <th>Humidity</th>
-            <th>Air Pressure</th>
-            <th>Lightness</th>
-            <th>Altitude</th>
-            <th>Datum</th>
-            <th>User</th>
-            <th>Wetterstation</th>
+            <th>Temperatur</th>
+            <th>rel. Luftfeuchtigkeit</th>
+            <th>Luftdruck</th>
+            <th>Helligkeit</th>
+            <th>Höhe</th>
             <th>Stadt</th>
-            <th>Land</th>
         </tr>
     </thead>
     <tbody>
@@ -27,13 +23,14 @@
             <td>{{ wd.air_pressure}}</td>
             <td>{{ wd.lightness }}</td>
             <td>{{ wd.altitude }}</td>
-            <td>{{ wd.timestamp }}</td>
-            <td><a href="{{ wd.weatherstation.get_absolute_url2 }}">{{ wd.weatherstation.user }}</a></td>
-            <td><a href="{{ wd.get_absolute_url }}">{{ wd }}</a></td>
+            <!--<td>{{ wd.timestamp }}</td>-->
+            <!--<td><a href="{{ wd.weatherstation.get_absolute_url2 }}">{{ wd.weatherstation.user }}</a></td>-->
+            <!--<td><a href="{{ wd.get_absolute_url }}">{{ wd }}</a></td>-->
             <td><a href="{{ wd.weatherstation.get_absolute_url3 }}">{{  wd.weatherstation.city.city}}</a></td>
-            <td>{{ wd.weatherstation.city.country.country }}</td>
+            <!--<td>{{ wd.weatherstation.city.country.country }}</td>-->
         </tr>
      {% endfor %}
     </tbody>
 </table>
+<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
 {% endblock %}
