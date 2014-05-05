@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 from view.models import Weatherdata, Weatherstation, Cities
 
@@ -14,6 +15,16 @@ def index(request):
 
 def all_wd(request):
     wd = Weatherdata.objects.select_related('weatherstation', 'weatherstation__city', 'city__country').all()
+    paginator = Paginator(wd, 10)
+    try:
+        page = int(request.GET.get("page", '1'))
+    except ValueError:
+        page = 1
+    try:
+        wd = paginator.page(page)
+    except (InvalidPage, EmptyPage):
+        wd = paginator.page(paginator.num_pages)
+
     return render_to_response('view/all_wd.html', {'weatherdata': wd})
 
 
