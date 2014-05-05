@@ -12,6 +12,11 @@ def index(request):
     return render_to_response('view/index.html', {'weatherdata': wd})
 
 
+def all_wd(request):
+    wd = Weatherdata.objects.select_related('weatherstation', 'weatherstation__city', 'city__country').all()
+    return render_to_response('view/all_wd.html', {'weatherdata': wd})
+
+
 def detail(request, ws_id):
     try:
         ws = Weatherstation.objects.get(id=ws_id)

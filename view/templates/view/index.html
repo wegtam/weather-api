@@ -1,4 +1,4 @@
-{% extends "base1.html" %}
+{% extends "base_index.html" %}
 
 {% block title %}{{ block.super }} - Alle Wetterdaten{% endblock %}
 
@@ -32,5 +32,39 @@
      {% endfor %}
     </tbody>
 </table>
-<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+    {% url 'view-all_wd' as all_wd_url  %}
+<p><a class="btn btn-default" href="{{ all_wd_url }}">View details &raquo;</a></p>
+{% endblock %}
+{% block sidebar %}
+    <div class="sidebar-module">
+          	<h4>Aktuelle News</h4>
+          	<ol class="list-unstyled">
+          		<li><a href="#">Wetterportal startet</a></li>
+          		<li><a href="#">Wartung am 03.03.2014</a></li>
+          		<li><a href="#">Neue Funktionen</a></li>
+          	</ol>
+          </div>
+          <div class="sidebar-module">
+          	<h4>Meistgesuchte Städte</h4>
+          	<ol class="list-unstyled">
+          		<li><a href="#">Rostock</a></li>
+          		<li><a href="#">Berlin</a></li>
+          		<li><a href="#">Hamburg</a></li>
+          		<li><a href="#">Wismar</a></li>
+          		<li><a href="#">Stuttgart</a></li>
+          		<li><a href="#">Schwerin</a></li>
+          		<li><a href="#">Nürnberg</a></li>
+          		<li><a href="#">München</a></li>
+          	</ol>
+
+          </div>
+          <div class="sidebar-module">
+          	<h4>Social Media</h4>
+          	<ol class="list-unstyled">
+          		<li><a href="#">Twitter</a></li>
+          		<li><a href="#">Facebook</a></li>
+          		<li><a href="#">Google+</a></li>
+          		<li><a href="#">Xing</a></li>
+          	</ol>
+          </div>
 {% endblock %}

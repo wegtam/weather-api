@@ -1,4 +1,4 @@
-{% extends "base1.html" %}
+{% extends "base.html" %}
 
 {% block title %}{{ block.super }} - Alle Wetterdaten{% endblock %}
 
@@ -32,6 +32,6 @@
      {% endfor %}
     </tbody>
 </table>
-    {% url 'view_index' as index_url  %}
+    {% url 'view-index' as index_url  %}
     <h6><a href="{{ index_url }}">Zurück zur Übersicht</a></h6>
 {% endblock %}
