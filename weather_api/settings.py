@@ -72,6 +72,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'view',
+    'auth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -117,9 +118,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-LOGIN_URL = '/benutzer/login/'
+LOGIN_URL = '/view-login/'
 
-LOGOUT_URL = '/benutzer/logout/'
+LOGOUT_URL = '/view-logout/'
 
 LOGIN_REDIRECT_URL = '/'
 
