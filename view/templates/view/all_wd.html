@@ -7,16 +7,16 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Temperatur</th>
-            <th>rel. Luftfeuchtigkeit</th>
-            <th>Luftdruck</th>
-            <th>Helligkeit</th>
-            <th>Höhe</th>
+            <th>Temperatur (C°)</th>
+            <th>rel. Luftfeuchtigkeit (%)</th>
+            <th>Luftdruck (mbar)</th>
+            <th>Beleuchtungsstärke (Lux)</th>
+            <th>rel. Höhe (cm)</th>
             <th>Eingetragen am</th>
             <th>Nutzer</th>
             <th>Wetterstation</th>
             <th>Stadt</th>
-            <th>Land</th>
+            <!--<th>Land</th>-->
         </tr>
     </thead>
     <tbody>
@@ -31,7 +31,7 @@
             <td><a href="{{ wd.weatherstation.get_absolute_url2 }}">{{ wd.weatherstation.user }}</a></td>
             <td><a href="{{ wd.get_absolute_url }}">{{ wd }}</a></td>
             <td><a href="{{ wd.weatherstation.get_absolute_url3 }}">{{  wd.weatherstation.city.city}}</a></td>
-            <td>{{ wd.weatherstation.city.country.country }}</td>
+            <!--<td>{{ wd.weatherstation.city.country.country }}</td>-->
         </tr>
      {% endfor %}
     </tbody>

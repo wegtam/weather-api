@@ -75,8 +75,8 @@ def save_wd(request):
         air_pressure = request.POST.get("air_pressure")
         lightness = request.POST.get("lightness")
         weatherstation_id = request.POST.get("weatherstation_id")
-        user_id = request.POST.get("user_id")
-        weatherdata = Weatherdata(humidity=humidity, temperature=temperature, altitude=altitude, air_pressure=air_pressure, lightness=lightness, weatherstation_id=weatherstation_id, user_id=user_id)
+        #user_id = request.POST.get("user_id")
+        weatherdata = Weatherdata(humidity=humidity, temperature=temperature, altitude=altitude, air_pressure=air_pressure, lightness=lightness, weatherstation_id=weatherstation_id)
         weatherdata.save()
 
         return HttpResponse(weatherdata)
