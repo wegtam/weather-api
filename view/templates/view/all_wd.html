@@ -37,29 +37,29 @@
     </tbody>
 </table>
                     <!-- Next/Prev page links  -->
-      <div class="col-lg-12" align="right">
-      {% if weatherdata.object_list and weatherdata.paginator.num_pages > 1 %}
+    <div class="col-lg-12" align="right">
+        {% if weatherdata.object_list and weatherdata.paginator.num_pages > 1 %}
 
-        <ul class="pagination">
+            <ul class="pagination">
 
                 {% if weatherdata.has_previous %}
-                    <li><a href= "?page={{ weatherdata.previous_page_number }}">&lt;&lt;</a></li>
+                    <li><a href="?page={{ weatherdata.previous_page_number }}">&lt;&lt;</a></li>
                 {% endif %}
 
                 {% for page in weatherdata.paginator.page_range %}
-                {% if weatherdata.number == page %}
-                    <li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
-                {% else %}
-                    <li><a href="?page={{ page }}">{{ page }}</a></li>
-                {% endif %}
+                    {% if weatherdata.number == page %}
+                        <li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="?page={{ page }}">{{ page }}</a></li>
+                    {% endif %}
                 {% endfor %}
 
                 {% if weatherdata.has_next %}
                     <li><a href="?page={{ weatherdata.next_page_number }}"> &gt;&gt;</a></li>
                 {% endif %}
-        </ul>
+            </ul>
         {% endif %}
-      </div>
+    </div>
 
     {% url 'view-index' as index_url  %}
     <h6><a href="{{ index_url }}">Zurück zur Übersicht</a></h6>
